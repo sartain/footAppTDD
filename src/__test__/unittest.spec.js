@@ -1,5 +1,6 @@
 describe("Starting app", () => {
   it("Loads all the players", () => {
-    expect(1, 1 + 0);
+    let sum = 1 + 0;
+    expect(sum).toBe(1);
   });
 });

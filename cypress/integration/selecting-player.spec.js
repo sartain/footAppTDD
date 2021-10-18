@@ -1,6 +1,7 @@
 describe("Selecting Player", () => {
   it("shows restaurants from the server", () => {
-    expect(1, 1 + 0);
+    let sum = 1 + 0;
+    expect(sum).toBe(1);
   });
 });
 //Idea is a few variables are created since they will be used
