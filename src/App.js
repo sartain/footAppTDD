@@ -1,4 +1,9 @@
-const App = () => <h1>Hello World</h1>;
+import { PlayerSelection } from "./PlayerSelection";
+const App = () => (
+  <div>
+    <PlayerSelection />
+  </div>
+);
 
 export default App;
 //In React TDD it is common to write what we want (code you wish you had)
