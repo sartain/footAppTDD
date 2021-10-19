@@ -17,10 +17,12 @@ describe("Selecting a player from the app", () => {
   it("allows the player to be selected", () => {
     cy.get("#team").get("#selected-player").should("not.exist");
     cy.contains("John Doe").click();
+  });
+  it("shows the selected player on the selected screen", () => {
     cy.get("#team").contains("John Doe");
   });
-  it("shows the selected player on the selected screen", () => {});
 });
+
 //Idea is a few variables are created since they will be used
 //E2E tests don't hit real backend, so we can force 404
 //The route performs a HTTP GET request at site

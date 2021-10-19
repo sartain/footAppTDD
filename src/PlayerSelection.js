@@ -1,8 +1,19 @@
+import React from "react";
 import { Player } from "./Player";
-export const PlayerSelection = (props) => (
-  <ul id={props.id}>
-    <l1>
-      <Player id="player-option" handleChange={props.handleChange}></Player>
-    </l1>
-  </ul>
-);
+import playerList from "./playerList.json";
+export default class PlayerSelection extends React.Component {
+  loadPlayers = () => {
+    return playerList.map((playerData) => (
+      <l1 key={playerData.name}>
+        <Player
+          id="player-option"
+          name={playerData.name}
+          selectPlayer={() => this.props.handleChange(playerData.name)}
+        />
+      </l1>
+    ));
+  };
+  render() {
+    return <ul id={this.props.id}>{this.loadPlayers()}</ul>;
+  }
+}
