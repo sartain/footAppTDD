@@ -1,0 +1,87 @@
+[
+  {
+    "name": "pickford",
+    "position": "gk",
+    "price": "1"
+  },
+  {
+    "name": "ederson",
+    "position": "gk",
+    "price": "2"
+  },
+  {
+    "name": "southall",
+    "position": "gk",
+    "price": "3"
+  },
+  {
+    "name": "cannavaro",
+    "position": "def",
+    "price": "1"
+  },
+  {
+    "name": "maldini",
+    "position": "def",
+    "price": "2"
+  },
+  {
+    "name": "godfrey",
+    "position": "def",
+    "price": "3"
+  },
+  {
+    "name": "scholes",
+    "position": "mid1",
+    "price": "1"
+  },
+  {
+    "name": "gerrard",
+    "position": "mid1",
+    "price": "2"
+  },
+  {
+    "name": "lampard",
+    "position": "mid1",
+    "price": "3"
+  },
+  {
+    "name": "osman",
+    "position": "mid2",
+    "price": "1"
+  },
+  {
+    "name": "jorginho",
+    "position": "mid2",
+    "price": "2"
+  },
+  {
+    "name": "toure",
+    "position": "mid2",
+    "price": "3"
+  },
+  {
+    "name": "messi",
+    "position": "for",
+    "price": "1"
+  },
+  {
+    "name": "neymar",
+    "position": "for",
+    "price": "2"
+  },
+  {
+    "name": "ronaldo",
+    "position": "for",
+    "price": "3"
+  },
+  {
+    "name": "John Doe",
+    "position": "for",
+    "price": "3"
+  },
+  {
+    "name": "Jane Doe",
+    "position": "for",
+    "price": "3"
+  }
+]

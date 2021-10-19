@@ -1,4 +1,4 @@
-import { PlayerSelection } from "./PlayerSelection";
+import PlayerSelection from "./PlayerSelection";
 import { Team } from "./Team";
 import { Player } from "./Player";
 import React from "react";
@@ -9,9 +9,9 @@ class App extends React.Component {
       team: <li></li>,
     };
   }
-  handleChange = () => {
+  handleChange = (playerName) => {
     this.setState({
-      team: <Player id="selected-player" />,
+      team: <Player id="selected-player" name={playerName} />,
     });
   };
   render() {
