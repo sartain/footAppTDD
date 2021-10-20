@@ -7,8 +7,8 @@ export default class PlayerSelection extends React.Component {
       <l1 key={playerData.name}>
         <Player
           id="player-option"
-          name={playerData.name}
-          selectPlayer={() => this.props.handleChange(playerData.name)}
+          playerInfo={playerData}
+          selectPlayer={() => this.props.handleChange(playerData)}
         />
       </l1>
     ));

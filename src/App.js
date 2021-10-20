@@ -1,23 +1,54 @@
 import PlayerSelection from "./PlayerSelection";
 import { Team } from "./Team";
-import { Player } from "./Player";
 import React from "react";
+import { Money } from "./Money";
+import { isPlayerAffordable } from "./SelectPlayer.js";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      team: <li></li>,
+      money: 2,
+      team: { name: "No Player Selected", price: 0 },
     };
   }
-  handleChange = (playerName) => {
+  handleChange = (playerToBuy) => {
+    console.log(this.state.team.price);
+    if (
+      isPlayerAffordable(
+        this.state.money,
+        this.state.team.price,
+        playerToBuy.price
+      )
+    ) {
+      this.setState({
+        money: parseInt(
+          this.state.money + this.state.team.price - playerToBuy.price
+        ),
+        team: {
+          name: playerToBuy.name,
+          price: parseInt(playerToBuy.price),
+        },
+      });
+    }
+  };
+  deselectPlayer = (playerToDeselect) => {
     this.setState({
-      team: <Player id="selected-player" name={playerName} />,
+      money: parseInt(this.state.money + playerToDeselect.price),
+      team: {
+        name: "No player selected",
+        price: 0,
+      },
     });
   };
   render() {
     return (
       <div>
-        <Team id="team" player={this.state.team} />
+        <Money id="money" currentMoney={this.state.money} />
+        <Team
+          id="team"
+          playerInfo={this.state.team}
+          deselectPlayer={this.deselectPlayer}
+        />
         <PlayerSelection
           id="player-selection"
           handleChange={this.handleChange}

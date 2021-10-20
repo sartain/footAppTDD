@@ -4,24 +4,50 @@ describe("cypress setup", () => {
     expect(sum).to.eq(2);
   });
 });
-describe("Selecting a player from the optinos", () => {
+describe("Selecting a player from the options", () => {
   //Visits the main page
   //Gets the player selection attribute and checks it contains a player attribute "John Doe"
   it("shows a player option", () => {
     cy.visit("/");
     //cy.contains("John Doe");
-    cy.get("#player-selection").contains("John Doe");
+    cy.get("#player-selection").contains("pickford");
   });
   //Attempts to click on player attribute
   //Expects a method to be called to handle this
   it("allows the player to be selected", () => {
-    cy.get("#team").get("#selected-player").should("not.exist");
-    cy.contains("John Doe").click();
+    cy.contains("pickford").click();
   });
   it("shows the selected player on the selected screen", () => {
-    cy.get("#team").contains("John Doe");
+    cy.get("#team").contains("pickford");
   });
 });
+//For this test we are assuming that the test is 2
+//We have tested the presence of different names
+describe("Purchasing a player from the options", () => {
+  let cheapPlayer = "pickford"; //1
+  let swapPlayer = "ederson"; //2
+  let expensivePlayer = "southall"; //3
+  it("shows money available", () => {
+    cy.visit("/");
+  });
+  it("shows player price", () => {
+    cy.get("#money").contains("2");
+  });
+  it("allows purchase of player cheaper than money", () => {
+    cy.contains(cheapPlayer).click();
+    cy.get("#team").contains(cheapPlayer);
+  });
+  it("disallows purchase of more expensive player", () => {
+    cy.contains(expensivePlayer).click();
+    cy.get("#team").contains(cheapPlayer);
+  });
+  it("swaps out players if current player sold", () => {
+    cy.contains(swapPlayer).click();
+    cy.get("#team").contains(swapPlayer);
+  });
+});
+//First test shows elements are clickable, this can be assumed in second test
+//Therefore we test different parameters occurring
 //Idea is a few variables are created since they will be used
 //E2E tests don't hit real backend, so we can force 404
 //The route performs a HTTP GET request at site

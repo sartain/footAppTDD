@@ -7,7 +7,10 @@ describe("Player Selection loading from JSON", () => {
   it("Loads players from a json file", () => {
     let { container, getByText } = render(<PlayerSelection />);
     for (let playerID = 0; playerID < playerList.length; playerID++) {
-      expect(getByText(playerList[playerID].name)).toBeInTheDocument();
+      let currentPlayer = playerList[playerID];
+      expect(
+        getByText(currentPlayer.name + " £" + currentPlayer.price + "M")
+      ).toBeInTheDocument();
     }
   });
   it("Displays the players on the screen", () => {});
