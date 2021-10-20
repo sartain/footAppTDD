@@ -4,7 +4,7 @@ describe("cypress setup", () => {
     expect(sum).to.eq(2);
   });
 });
-describe("Selecting a player from the app", () => {
+describe("Selecting a player from the optinos", () => {
   //Visits the main page
   //Gets the player selection attribute and checks it contains a player attribute "John Doe"
   it("shows a player option", () => {
@@ -22,7 +22,6 @@ describe("Selecting a player from the app", () => {
     cy.get("#team").contains("John Doe");
   });
 });
-
 //Idea is a few variables are created since they will be used
 //E2E tests don't hit real backend, so we can force 404
 //The route performs a HTTP GET request at site
