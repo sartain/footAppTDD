@@ -17,3 +17,5 @@ describe("Player Selection loading from JSON", () => {
 });
 //Possibly all implicit? If the list exists then displayed on screen can check individual elements
 //E.g checking the state even though the values are not stored in state
+//With get by text, we specify exactly how we want a piece of text written on the screen
+//This leads us to copying this approach in the actual selection (Driven by TDD)
