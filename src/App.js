@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       money: 2,
-      team: { name: "", price: 0 },
+      team: { name: "No Player Selected", price: 0 },
     };
   }
   handleChange = (playerToBuy) => {
@@ -31,11 +31,24 @@ class App extends React.Component {
       });
     }
   };
+  deselectPlayer = (playerToDeselect) => {
+    this.setState({
+      money: parseInt(this.state.money + playerToDeselect.price),
+      team: {
+        name: "No player selected",
+        price: 0,
+      },
+    });
+  };
   render() {
     return (
       <div>
         <Money id="money" currentMoney={this.state.money} />
-        <Team id="team" playerInfo={this.state.team} />
+        <Team
+          id="team"
+          playerInfo={this.state.team}
+          deselectPlayer={this.deselectPlayer}
+        />
         <PlayerSelection
           id="player-selection"
           handleChange={this.handleChange}
