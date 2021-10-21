@@ -1,43 +1,53 @@
 import PlayerSelection from "./PlayerSelection";
-import { Team } from "./Team";
+import Team from "./Team";
 import React from "react";
 import { Money } from "./Money";
-import { isPlayerAffordable } from "./SelectPlayer.js";
+import {
+  isPlayerAffordable,
+  addPlayerToTeam,
+  removePlayerFromTeam,
+} from "./SelectPlayer.js";
+import { getPlayerRowFromTeam } from "./PlayerHelper";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       money: 2,
-      team: { name: "No Player Selected", price: 0 },
+      team: [
+        { name: "No Player selected", price: 0, position: "gk" },
+        { name: "No Player selected", price: 0, position: "def" },
+        { name: "No Player selected", price: 0, position: "mid1" },
+        { name: "No Player selected", price: 0, position: "mid2" },
+        { name: "No Player selected", price: 0, position: "for" },
+      ],
     };
   }
   handleChange = (playerToBuy) => {
-    console.log(this.state.team.price);
+    let previousPlayer = getPlayerRowFromTeam(
+      this.state.team,
+      playerToBuy.position
+    );
     if (
-      isPlayerAffordable(
-        this.state.money,
-        this.state.team.price,
-        playerToBuy.price
-      )
+      isPlayerAffordable(this.state.money, previousPlayer, playerToBuy.price)
     ) {
+      let newTeam = addPlayerToTeam(this.state.team, playerToBuy);
+      //function to get a new team
       this.setState({
         money: parseInt(
-          this.state.money + this.state.team.price - playerToBuy.price
+          this.state.money + previousPlayer.price - playerToBuy.price
         ),
-        team: {
-          name: playerToBuy.name,
-          price: parseInt(playerToBuy.price),
-        },
+        team: newTeam,
       });
     }
   };
   deselectPlayer = (playerToDeselect) => {
+    let newTeam = removePlayerFromTeam(
+      this.state.team,
+      playerToDeselect.position
+    );
     this.setState({
       money: parseInt(this.state.money + playerToDeselect.price),
-      team: {
-        name: "No player selected",
-        price: 0,
-      },
+      team: newTeam,
     });
   };
   render() {
