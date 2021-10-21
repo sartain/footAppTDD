@@ -12,5 +12,5 @@ export function getPlayerRowFromTeam(team, addPosition) {
       return getPlayerInfoFromTeam(newTeam[i]);
     }
   }
-  return getPlayerInfoFromTeam(newTeam[2]);
+  return 0;
 }

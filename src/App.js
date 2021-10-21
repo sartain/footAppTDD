@@ -6,8 +6,9 @@ import {
   isPlayerAffordable,
   addPlayerToTeam,
   removePlayerFromTeam,
+  getPreviousPlayerPrice,
 } from "./SelectPlayer.js";
-import { getPlayerRowFromTeam } from "./PlayerHelper";
+import { getPlayerRowFromTeam } from "./PlayerHelper.js";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,19 +23,21 @@ class App extends React.Component {
       ],
     };
   }
+  //Adding midfielders breaks money
+  //Consider restructuring
   handleChange = (playerToBuy) => {
-    let previousPlayer = getPlayerRowFromTeam(
+    let previousPlayerPrice = getPreviousPlayerPrice(
       this.state.team,
       playerToBuy.position
     );
     if (
-      isPlayerAffordable(this.state.money, previousPlayer, playerToBuy.price)
+      isPlayerAffordable(this.state.money, previousPlayerPrice, playerToBuy)
     ) {
       let newTeam = addPlayerToTeam(this.state.team, playerToBuy);
       //function to get a new team
       this.setState({
         money: parseInt(
-          this.state.money + previousPlayer.price - playerToBuy.price
+          this.state.money + previousPlayerPrice - playerToBuy.price
         ),
         team: newTeam,
       });
