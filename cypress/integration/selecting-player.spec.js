@@ -51,7 +51,8 @@ describe("Purchasing a team of players in every position", () => {
   let goalkeeper = "pickford";
   let defender = "cannavaro";
   let midfielder1 = "scholes";
-  let midfielder2 = "gerrard";
+  let midfielder2 = "osman";
+  let expensivemidfielder = "lampard";
   let forward = "messi";
   it("shows each position available", () => {
     cy.visit("/");
@@ -73,12 +74,19 @@ describe("Purchasing a team of players in every position", () => {
     cy.get("#team").get("#gk").click();
     cy.get("#team").get("#gk").contains("No Player selected");
   });
-  /*it("selects the empty midfielder option", () => {
+  it("selects the empty midfielder option", () => {
     cy.contains(midfielder1).click();
     cy.contains(midfielder2).click();
     cy.get("#team").get("#mid1").contains(midfielder1);
     cy.get("#team").get("#mid2").contains(midfielder2);
-  });*/
+  });
+  it("selects the empty midfielder option if can afford", () => {
+    cy.visit("/");
+    cy.contains(midfielder1).click();
+    cy.contains(expensivemidfielder).click();
+    cy.get("#team").get("#mid1").contains(midfielder1);
+    cy.get("#team").get("#mid2").contains("No Player selected");
+  });
   //replacing players in position
   //midfielder special case
 });
