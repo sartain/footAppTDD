@@ -46,9 +46,47 @@ describe("Purchasing a player from the options", () => {
     cy.get("#team").contains(swapPlayer);
   });
 });
+describe("Purchasing a team of players in every position", () => {
+  let positions = ["gk", "def", "mid1", "mid2", "for"];
+  let goalkeeper = "pickford";
+  let defender = "cannavaro";
+  let midfielder1 = "scholes";
+  let midfielder2 = "gerrard";
+  let forward = "messi";
+  it("shows each position available", () => {
+    cy.visit("/");
+    for (let index = 0; index < positions.length; index++) {
+      cy.get("#team").get("#" + positions[index]);
+    }
+  });
+  it("selects a player in the correct position", () => {
+    cy.get("#team");
+    cy.contains(goalkeeper).click();
+    cy.contains(defender).click();
+    cy.get("#team").get("#gk").contains(goalkeeper);
+    cy.get("#team").get("#def").contains(defender);
+  });
+  it("removes a player in the correct position", () => {
+    cy.visit("/"); //Reset the visit to reset the money
+    cy.contains(goalkeeper).click();
+    cy.get("#team").get("#gk").contains(goalkeeper);
+    cy.get("#team").get("#gk").click();
+    cy.get("#team").get("#gk").contains("No Player selected");
+  });
+  /*it("selects the empty midfielder option", () => {
+    cy.contains(midfielder1).click();
+    cy.contains(midfielder2).click();
+    cy.get("#team").get("#mid1").contains(midfielder1);
+    cy.get("#team").get("#mid2").contains(midfielder2);
+  });*/
+  //replacing players in position
+  //midfielder special case
+});
 //First test shows elements are clickable, this can be assumed in second test
 //Therefore we test different parameters occurring
 //Idea is a few variables are created since they will be used
 //E2E tests don't hit real backend, so we can force 404
 //The route performs a HTTP GET request at site
 //Response is sent for what we want, stored in values
+
+//Difficult problem, clicking a midfielder we want to place them in the free space

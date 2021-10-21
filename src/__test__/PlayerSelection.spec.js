@@ -9,7 +9,14 @@ describe("Player Selection loading from JSON", () => {
     for (let playerID = 0; playerID < playerList.length; playerID++) {
       let currentPlayer = playerList[playerID];
       expect(
-        getByText(currentPlayer.name + " £" + currentPlayer.price + "M")
+        getByText(
+          currentPlayer.position +
+            " " +
+            currentPlayer.name +
+            " £" +
+            currentPlayer.price +
+            "M"
+        )
       ).toBeInTheDocument();
     }
   });
