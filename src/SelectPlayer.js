@@ -1,6 +1,12 @@
 import { getPlayerRowFromTeam } from "./PlayerHelper";
-export function isPlayerAffordable(money, previousPlayerPrice, playerToBuy) {
-  if (playerToBuy.price <= previousPlayerPrice + money) return true;
+export function isPlayerSelectable(team, money, previousPlayer, playerToBuy) {
+  let noDuplication = true;
+  if (playerToBuy.position === "mid")
+    noDuplication = checkMidfielders(team, playerToBuy.name);
+  if (noDuplication) {
+    let previousPlayerPrice = previousPlayer.price;
+    if (playerToBuy.price <= previousPlayerPrice + money) return true;
+  }
   return false;
 }
 export function addPlayerToTeam(currentTeam, playerToAdd) {
@@ -67,22 +73,31 @@ function isMidfielderAffordable(money, team, buyPrice) {
 //Consider -> both full select one if can afford
 //Consider -> both full same price? User select?
 //Consider -> both full neither can afford
-export function getPreviousPlayerPrice(team, position) {
+export function getPreviousPlayer(team, position) {
   let oldTeam = team;
-  if (position === "mid") return getMidfielderPrice(oldTeam);
-  let previousPlayer = getPlayerRowFromTeam(team, position);
-  return previousPlayer.price;
+  if (position === "mid")
+    return getPlayerRowFromTeam(oldTeam, getMidfielderPosition(oldTeam));
+  let previousPlayer = getPlayerRowFromTeam(oldTeam, position);
+  return previousPlayer;
 }
-function getMidfielderPrice(team) {
+function getMidfielderPosition(team) {
   const mid1Index = 2;
   const mid2Index = 3;
-  let sellPrice = 0;
-  if (team[mid1Index].price === 0 || team[mid2Index] === 0) {
-    sellPrice = 0;
+  let position = "";
+  if (team[mid1Index].price === 0) {
+    position = "mid1";
   } else if (team[mid2Index].price === 0) {
-    sellPrice = 0;
+    position = "mid2";
   } else {
-    sellPrice = team[mid1Index].price;
+    position = "mid1";
   }
-  return sellPrice;
+  return position;
+}
+function checkMidfielders(team, name) {
+  const mid1Index = 2;
+  const mid2Index = 3;
+  if (team[mid1Index].name === name || team[mid2Index].name === name) {
+    return false;
+  }
+  return true;
 }

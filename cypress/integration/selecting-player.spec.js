@@ -87,6 +87,13 @@ describe("Purchasing a team of players in every position", () => {
     cy.get("#team").get("#mid1").contains(midfielder1);
     cy.get("#team").get("#mid2").contains("No Player selected");
   });
+  it("doesn't select duplicate midfielder options", () => {
+    cy.visit("/");
+    cy.contains(midfielder1).click();
+    cy.get("#player-selection").contains(midfielder1).click();
+    cy.get("#team").get("#mid1").contains(midfielder1);
+    cy.get("#team").get("#mid2").contains("No Player selected");
+  });
   //replacing players in position
   //midfielder special case
 });
