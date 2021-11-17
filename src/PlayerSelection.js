@@ -14,6 +14,10 @@ export default class PlayerSelection extends React.Component {
     ));
   };
   render() {
-    return <ul id={this.props.id}>{this.loadPlayers()}</ul>;
+    return (
+      <div class="player-selection">
+        <ul id={this.props.id}>{this.loadPlayers()}</ul>
+      </div>
+    );
   }
 }

@@ -87,17 +87,5 @@
     "name": "ronaldo",
     "position": "for",
     "price": "3"
-  },
-  {
-    "id": "15",
-    "name": "John Doe",
-    "position": "for",
-    "price": "3"
-  },
-  {
-    "id": "16",
-    "name": "Jane Doe",
-    "position": "for",
-    "price": "3"
   }
 ]

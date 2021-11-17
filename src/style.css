@@ -2,16 +2,43 @@
   color: darkslateblue;
 }
 #selected-player {
-  float: right;
   color: cornflowerblue;
 }
 #team {
   float: left;
-  background-color: beige;
+  border-radius: 25px;
+  padding: 15px;
+  background-color: #f5f5dc;
 }
-#player-selection {
+div.player-selection {
+  height: 300px;
+  overflow: auto;
+  white-space: nowrap;
   background-color: bisque;
+}
+div.player-selection li {
+  height: 100px;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
 }
 #money {
   color: green;
+}
+#gk {
+  color: orange;
+}
+#def {
+  color: red;
+}
+#mid1 {
+  color: blue;
+}
+#mid2 {
+  color: blue;
+}
+#for {
+  color: black;
 }
