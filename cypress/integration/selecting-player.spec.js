@@ -6,10 +6,9 @@ describe("cypress setup", () => {
 });
 describe("Selecting a player from the options", () => {
   //Visits the main page
-  //Gets the player selection attribute and checks it contains a player attribute "John Doe"
+  //Gets the player selection attribute and checks it contains a player attribute "Pickford"
   it("shows a player option", () => {
     cy.visit("/");
-    //cy.contains("John Doe");
     cy.get("#player-selection").contains("pickford");
   });
   //Attempts to click on player attribute
