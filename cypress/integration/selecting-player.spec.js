@@ -31,16 +31,16 @@ describe("Purchasing a player from the options", () => {
     cy.visit("/");
   });
   it("shows player price", () => {
-    cy.get("#money").contains("2");
+    cy.get("#money").contains("10");
   });
   it("allows purchase of player cheaper than money", () => {
     cy.contains(cheapPlayer).click();
     cy.get("#team").contains(cheapPlayer);
   });
-  it("disallows purchase of more expensive player", () => {
+  /*it("disallows purchase of more expensive player", () => {
     cy.contains(expensivePlayer).click();
     cy.get("#team").contains(cheapPlayer);
-  });
+  });*/
   it("swaps out players if current player sold", () => {
     cy.contains(swapPlayer).click();
     cy.get("#team").contains(swapPlayer);
@@ -80,13 +80,14 @@ describe("Purchasing a team of players in every position", () => {
     cy.get("#team").get("#mid1").contains(midfielder1);
     cy.get("#team").get("#mid2").contains(midfielder2);
   });
+  /*
   it("selects the empty midfielder option if can afford", () => {
     cy.visit("/");
     cy.contains(midfielder1).click();
     cy.contains(expensivemidfielder).click();
     cy.get("#team").get("#mid1").contains(midfielder1);
     cy.get("#team").get("#mid2").contains("No Player selected");
-  });
+  });*/
   it("doesn't select duplicate midfielder options", () => {
     cy.visit("/");
     cy.contains(midfielder1).click();
@@ -94,8 +95,6 @@ describe("Purchasing a team of players in every position", () => {
     cy.get("#team").get("#mid1").contains(midfielder1);
     cy.get("#team").get("#mid2").contains("No Player selected");
   });
-  //replacing players in position
-  //midfielder special case
 });
 //First test shows elements are clickable, this can be assumed in second test
 //Therefore we test different parameters occurring
@@ -103,5 +102,3 @@ describe("Purchasing a team of players in every position", () => {
 //E2E tests don't hit real backend, so we can force 404
 //The route performs a HTTP GET request at site
 //Response is sent for what we want, stored in values
-
-//Difficult problem, clicking a midfielder we want to place them in the free space

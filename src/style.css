@@ -1,6 +1,17 @@
 #player-option {
-  color: blue;
+  color: darkslateblue;
 }
 #selected-player {
+  float: right;
+  color: cornflowerblue;
+}
+#team {
+  float: left;
+  background-color: beige;
+}
+#player-selection {
+  background-color: bisque;
+}
+#money {
   color: green;
 }
