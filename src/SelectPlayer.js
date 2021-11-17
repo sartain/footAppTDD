@@ -2,7 +2,7 @@ import { getPlayerRowFromTeam } from "./PlayerHelper";
 export function isPlayerSelectable(team, money, previousPlayer, playerToBuy) {
   let noDuplication = true;
   if (playerToBuy.position === "mid")
-    noDuplication = checkMidfielders(team, playerToBuy.name);
+    noDuplication = midfielderAlreadyInTeam(team, playerToBuy.name);
   if (noDuplication) {
     let previousPlayerPrice = previousPlayer.price;
     if (playerToBuy.price <= previousPlayerPrice + money) return true;
@@ -47,6 +47,7 @@ function addMidfielderToTeam(newTeam, playerToAdd) {
     index = MID2;
     position = "mid2";
   }
+  //else calculate price etc
   if (index === 2 || index === 3) {
     newTeam[index].name = playerToAdd.name;
     newTeam[index].position = position;
@@ -89,11 +90,11 @@ function getMidfielderPosition(team) {
   } else if (team[mid2Index].price === 0) {
     position = "mid2";
   } else {
-    position = "mid1";
+    return null;
   }
   return position;
 }
-function checkMidfielders(team, name) {
+function midfielderAlreadyInTeam(team, name) {
   const mid1Index = 2;
   const mid2Index = 3;
   if (team[mid1Index].name === name || team[mid2Index].name === name) {

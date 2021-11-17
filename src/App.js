@@ -13,7 +13,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      money: 2,
+      money: 10,
       team: [
         { name: "No Player selected", price: 0, position: "gk" },
         { name: "No Player selected", price: 0, position: "def" },
@@ -28,6 +28,9 @@ class App extends React.Component {
       this.state.team,
       playerToBuy.position
     );
+    if (previousPlayer == null) {
+      return;
+    }
     let previousPlayerPrice = previousPlayer.price;
     if (
       isPlayerSelectable(
